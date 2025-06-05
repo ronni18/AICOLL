@@ -22,7 +22,7 @@ class StoreEmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nit' => 'required|string|unique:empresas,nit|max:20',
+            'nit' => 'required|string|max:20',
             'nombre' => 'required|string|max:100',
             'direccion' => 'required|string|max:150',
             'telefono' => 'required|string|max:20',

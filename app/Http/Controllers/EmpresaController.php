@@ -70,8 +70,16 @@ class EmpresaController extends Controller
     {
         try {
             $data = $request->validated();
+
+            if (Empresa::where('nit', $data['nit'])->exists()) {
+                return response()->json([
+                    'error' => 'Ya existe una empresa con el NIT proporcionado.'
+                ], 409);
+            }
+    
             $data['estado'] = 'Activo';
             $empresa = Empresa::create($data);
+    
             return response()->json($empresa, 201);
         } catch (QueryException $e) {
             return response()->json(['error' => 'Error en base de datos: '.$e->getMessage()], 400);

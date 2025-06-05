@@ -1,0 +1,192 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Empresas",
+        "description": "Documentación Swagger generada para la gestión de empresas",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/empresas": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Obtener todas las empresas",
+                "operationId": "e5d40f6ab397a2e07d02f50d3eb395f3",
+                "responses": {
+                    "200": {
+                        "description": "Lista de empresas"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Crear una nueva empresa",
+                "operationId": "b400bda696995ef09cec01e24e345e39",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nit",
+                                    "nombre",
+                                    "direccion",
+                                    "telefono"
+                                ],
+                                "properties": {
+                                    "nit": {
+                                        "type": "string",
+                                        "example": "1234567890"
+                                    },
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Mi Empresa S.A."
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "example": "Calle 123"
+                                    },
+                                    "telefono": {
+                                        "type": "string",
+                                        "example": "3001234567"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Empresa creada exitosamente"
+                    },
+                    "400": {
+                        "description": "Error de validación o duplicado"
+                    }
+                }
+            }
+        },
+        "/api/empresas/{nit}": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Obtener una empresa por NIT",
+                "operationId": "8448257fd92509bb4ef08cefee1f7fc4",
+                "parameters": [
+                    {
+                        "name": "nit",
+                        "in": "path",
+                        "description": "NIT de la empresa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Datos de la empresa"
+                    },
+                    "404": {
+                        "description": "Empresa no encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Actualizar una empresa existente",
+                "operationId": "1ff1331a79bf301769d13b00ff077c7a",
+                "parameters": [
+                    {
+                        "name": "nit",
+                        "in": "path",
+                        "description": "NIT de la empresa a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Empresa Actualizada"
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "example": "Carrera 45 #10-15"
+                                    },
+                                    "telefono": {
+                                        "type": "string",
+                                        "example": "3019876543"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Activo",
+                                            "Inactivo"
+                                        ],
+                                        "example": "Activo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Empresa actualizada exitosamente"
+                    },
+                    "404": {
+                        "description": "Empresa no encontrada"
+                    }
+                }
+            }
+        },
+        "/api/empresas/inactivos": {
+            "delete": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Eliminar todas las empresas con estado 'Inactivo'",
+                "operationId": "342c3e526b70acf2f862c63c6530242f",
+                "responses": {
+                    "200": {
+                        "description": "Cantidad de empresas eliminadas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "deleted": {
+                                            "type": "integer",
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Empresas",
+            "description": "Empresas"
+        }
+    ]
+}

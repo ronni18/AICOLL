@@ -18,7 +18,7 @@ Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina local.
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git@github.com:ronni18/AICOLL.git
 cd tu-repositorio
 ```
 
